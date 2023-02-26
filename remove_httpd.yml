@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Remove appache from all 5 servers
+    yum:
+      name: httpd
+      state: absent

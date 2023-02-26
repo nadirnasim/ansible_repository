@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install appache from all 5 servers
+    yum:
+      name: httpd
+      state: latest
