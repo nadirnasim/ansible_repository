@@ -1,0 +1,39 @@
+---
+
+- hosts: Web_server
+  become: true
+  tasks:
+
+  - name: install appache on All web servers
+    yum:
+      name: 
+        - httpd
+      state: latest
+
+- hosts: mail_server
+  become: true
+  tasks:
+
+  - name: install posfix on all Mail servers
+    yum:
+      name:
+        - postfix
+      state: latest
+
+- hosts: File_server
+  become: true
+  tasks:
+
+  - name: install Nfs on all the NFS servers
+    yum:
+      name:
+        - nfs*
+      state: latest
+
+#  - name: start both the service by service modules
+#    service:
+#      name: "{{item}}"
+#      state: started
+#    loop:
+#      - httpd
+#      - postfix
