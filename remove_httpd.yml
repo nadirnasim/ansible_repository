@@ -6,5 +6,7 @@
 
   - name: Remove appache from all 5 servers
     yum:
-      name: httpd
+      name:
+        - httpd
+        - postfix
       state: absent
