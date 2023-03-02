@@ -10,25 +10,40 @@
         - httpd
       state: latest
 
-- hosts: mail_server
-  become: true
-  tasks:
+  - name: copy nadir_html to config file
+    tags: apache
+    copy:
+      src: file/nadir_apache.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+  
+  - name: service start after copy html
+    tags: apache
+    service:
+      name: httpd
+      state: started     
 
-  - name: install posfix on all Mail servers
-    yum:
-      name:
-        - postfix
-      state: latest
+#- hosts: mail_server
+#  become: true
+#  tasks:
 
-- hosts: File_server
-  become: true
-  tasks:
+#  - name: install posfix on all Mail servers
+#    yum:
+#      name:
+#        - postfix
+#      state: latest
 
-  - name: install Nfs on all the NFS servers
-    yum:
-      name:
-        - nfs*
-      state: latest
+#- hosts: File_server
+#  become: true
+#  tasks:
+
+#  - name: install Nfs on all the NFS servers
+#    yum:
+#      name:
+#        - nfs*
+#      state: latest
 
 #  - name: start both the service by service modules
 #    service:
