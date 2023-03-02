@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: we are adding new user from playbook
+    tags: always
+    user:
+      name: test
+      groups: root
+
+  - name: Adding ssh_key for test user
+    tags: always
+    authorized_key:
+      user: test
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwl7QpPBE2iXMlmbVVDF003Ov6eCjr9Qxp+pLWsvJksbWyuVZ3yV36JBWAXblZMGDNa56bzl0t7k6wX7qPzlnaDWe/3A5yJa8CmTGfmPZNHct8QvqJ6yVnpw7hkUIfVIeh0hrzFtaQAsG7BtGELByfZe4/n/mPidtU7+oVJY8S+m7GA/W1Is3Vk8Pxbj01Q1hdfhdcyxOe+eHwWPXzQPKXRoKxVgiPT2jq8TSwx7VxoBtAdV7ryMBlRDWrUKipIakof3y4SrhbsF2UPUwXSrD8eyZDSpaIh0u6UPlsbSrGvngwTFRheUV/XpwJkPwWTC2xSpKJE4CMSBWIsrQ16Fr7 test@C1" 
+
+  - name: Add user in sudo su root access
+    tags: always
+    copy:
+      src: file/test_sudoers
+      dest: /etc/sudoers.d/test
+      owner: root
+      group: root
+      mode: 0440
