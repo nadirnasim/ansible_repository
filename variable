@@ -1,0 +1,11 @@
+--- 
+- hosts: all
+  become: true
+
+  vars:
+    Audiance: Hello EveryOneeeee its me
+
+  tasks:
+   - name: Ansible basic variable 
+     debug:
+       msg: "{{ Audiance }}"   
