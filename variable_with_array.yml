@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    students:
+        - Raja
+        - Rani
+        - Bindaas
+        - Tab
+  tasks:
+  - name: we are going to call one person in that list
+    debug:
+      msg: "{{ students [2] }}"
