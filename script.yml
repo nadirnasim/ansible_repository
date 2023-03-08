@@ -1,0 +1,7 @@
+---
+- name: we are going to run script on all the servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Hello everyone
+      script: Hello.sh
